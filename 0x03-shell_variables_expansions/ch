@@ -1,0 +1,7 @@
+#!/bin/bash
+read name
+chmod +x ${name}
+./${name}#!/bin/bash
+read name
+chmod +x ${name}
+./${name}

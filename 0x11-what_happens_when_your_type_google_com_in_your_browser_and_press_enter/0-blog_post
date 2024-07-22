@@ -1,0 +1,26 @@
+What Happens When You Type https://www.google.com and Press Enter
+DNS Request
+DNS Lookup: Your browser first checks its DNS cache to see if it has recently requested the IP address for www.google.com. If not, it queries a DNS server to resolve the domain name to an IP address.
+TCP/IP
+TCP/IP Connection: Your browser establishes a TCP connection to the IP address on port 443 (the default port for HTTPS). This involves a three-way handshake (SYN, SYN-ACK, ACK) to ensure a reliable connection.
+Firewall
+Firewall Check: The request passes through your local firewall, then any intermediate firewalls, and finally Google's firewall, ensuring it complies with security policies.
+HTTPS/SSL
+SSL/TLS Handshake: The browser and server perform an SSL/TLS handshake to establish a secure encrypted connection. This involves:
+Exchanging encryption keys.
+Authenticating the server’s identity using its SSL certificate.
+Agreeing on encryption protocols.
+Load-balancer
+Load Balancer: The request reaches Google's load balancer, which distributes incoming requests across multiple web servers to ensure efficient resource utilization and high availability.
+Web Server
+Web Server: The load balancer forwards the request to one of Google's web servers. The web server processes the request, possibly serving static content or forwarding it to the appropriate application server.
+Application Server
+Application Server: If dynamic content is needed, the web server forwards the request to an application server. This server runs the necessary application logic, often interacting with databases and other services.
+Database
+Database Query: The application server queries the database to retrieve or store data as required. For a search query, it might involve accessing Google's indexed web data stored across multiple distributed databases.
+Response
+Response Assembly: The application server assembles the response and sends it back to the web server, which in turn forwards it through the load balancer.
+
+Return to Browser: The load balancer sends the response back through the network, passing through firewalls, re-encrypting data, and eventually delivering it to your browser.
+
+Rendering: Your browser receives the response, decrypts it, and begins rendering the HTML, CSS, and JavaScript to display the webpage.

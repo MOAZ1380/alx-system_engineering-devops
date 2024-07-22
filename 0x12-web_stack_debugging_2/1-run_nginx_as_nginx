@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Stop Nginx service
+sudo service nginx stop
+
+# Create nginx user if it doesn't exist
+if ! id -u nginx > /dev/null 2>&1; then
+    sudo useradd -r nginx
+fi
+
+# Update Nginx configuration to run as nginx user and listen on port 8080
+sudo sed -i 's/user .*/user nginx;/' /etc/nginx/nginx.conf
+sudo sed -i 's/listen 80;/listen 8080;/' /etc/nginx/sites-available/default
+
+# Ensure the web directory is owned by the nginx user
+sudo chown -R nginx:nginx /usr/share/nginx/html
+
+# Start Nginx service
+sudo service nginx start
+
+# Verify Nginx is running as the nginx user and listening on port 8080
+ps aux | grep nginx
+nc -zv 127.0.0.1 8080
